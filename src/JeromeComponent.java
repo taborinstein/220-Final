@@ -9,6 +9,9 @@ public class JeromeComponent extends JComponent{
 	protected void paintComponent(Graphics graphics)
 	{
 		super.paintComponent(graphics);
-		Graphics2D g2 = (Graphics2D) graphics;
+		Graphics2D g = (Graphics2D) graphics;
+		
+		GameObject temp = new GameObject(100,500,400,50,false,null);
+		temp.drawOn(g);
 	}
 }
