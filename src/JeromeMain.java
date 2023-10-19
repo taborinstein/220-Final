@@ -10,6 +10,10 @@ public class JeromeMain {
 			JFrame frame = new JFrame();
 			frame.setSize(FRAME_W,FRAME_H);
 			
+			frame.add(new JeromeComponent());
+			
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.setVisible(true);
 			
 		}
 }
