@@ -15,31 +15,28 @@ public class GameObject {
 		collidesWithPlayer = cWP;
 		damagesPlayer = dP;
 	}
-	
 	public GameObject(double ex, double why, double width, double height, boolean cWP, boolean dP, Sprite s,double vX, double vY)
 	{
 		this(ex,why,width,height,cWP,dP,s);
 		velX = vY;
 		velY = vY;
 	}
-	
-	public void drawOn(Graphics2D g)
-	{
-		//sprite.drawOn(g);
-		g.fillRect((int)x,(int)y,(int)w,(int)h);
+
+	public void drawOn(Graphics2D g) {
+		// sprite.drawOn(g);
+		g.fillRect((int) x, (int) y, (int) w, (int) h);
 	}
-	
-	public void update()
-	{
-		x+=velX;
-		y+=velY;
+
+	public void update() {
+		x += velX;
+		y += velY;
 	}
-	
-	public boolean overlapsWith(GameObject other)
-	{
-		return other.getX()+other.getW()>=x&&other.getX()<=x+w&&other.getY()+other.getH()>=y&&other.getY()<=y+h;
+
+	public boolean overlapsWith(GameObject other) {
+		return other.getX() + other.getW() >= x && other.getX() <= x + w && other.getY() + other.getH() >= y
+				&& other.getY() <= y + h;
 	}
-	
+
 	public double getX() {
 		return x;
 	}
@@ -96,5 +93,4 @@ public class GameObject {
 		this.collidesWithPlayer = collidesWithPlayer;
 	}
 
-	
 }

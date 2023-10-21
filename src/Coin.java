@@ -1,4 +1,3 @@
-
 public class Coin extends GameObject{
 	private static final double COIN_WIDTH = 50;
 	private static final double COIN_HEIGHT = 50;

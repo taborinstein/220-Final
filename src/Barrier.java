@@ -1,4 +1,3 @@
-
 public class Barrier{
 	//private Line[] bounds;
 	private Line line;
