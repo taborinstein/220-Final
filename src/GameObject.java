@@ -1,43 +1,40 @@
 import java.awt.Graphics2D;
 
 public class GameObject {
-	private Sprite sprite;
-	private double x,y,w,h,velX,velY;
-	private boolean collidesWithPlayer;
-	
-	public GameObject(double ex, double why, double width, double height, boolean cWP, Sprite s)
-	{
-		x = ex;
-		y = why;
+	protected Sprite sprite;
+	protected double x, y, w, h, velX, velY;
+	protected boolean collidesWithPlayer;
+
+	public GameObject(double posX, double posY, double width, double height, boolean cWP, Sprite s) {
+		x = posX;
+		y = posY;
 		w = width;
 		h = height;
 		collidesWithPlayer = cWP;
 	}
-	
-	public GameObject(double ex, double why, double width, double height, boolean cWP, Sprite s,double vX, double vY)
-	{
-		this(ex,why,width,height,cWP,s);
+
+	public GameObject(double posX, double posY, double width, double height, boolean cWP, Sprite s, double vX,
+			double vY) {
+		this(posX, posY, width, height, cWP, s);
 		velX = vY;
 		velY = vY;
 	}
-	
-	public void drawOn(Graphics2D g)
-	{
-		//sprite.drawOn(g);
-		g.fillRect((int)x,(int)y,(int)w,(int)h);
+
+	public void drawOn(Graphics2D g) {
+		// sprite.drawOn(g);
+		g.fillRect((int) x, (int) y, (int) w, (int) h);
 	}
-	
-	public void update()
-	{
-		x+=velX;
-		y+=velY;
+
+	public void update() {
+		x += velX;
+		y += velY;
 	}
-	
-	public boolean overlapsWith(GameObject other)
-	{
-		return other.getX()+other.getW()>=x&&other.getX()<=x+w&&other.getY()+other.getH()>=y&&other.getY()<=y+h;
+
+	public boolean overlapsWith(GameObject other) {
+		return other.getX() + other.getW() >= x && other.getX() <= x + w && other.getY() + other.getH() >= y
+				&& other.getY() <= y + h;
 	}
-	
+
 	public double getX() {
 		return x;
 	}
@@ -94,5 +91,4 @@ public class GameObject {
 		this.collidesWithPlayer = collidesWithPlayer;
 	}
 
-	
 }
