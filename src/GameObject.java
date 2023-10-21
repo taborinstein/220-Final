@@ -4,19 +4,21 @@ public class GameObject {
 	private Sprite sprite;
 	private double x,y,w,h,velX,velY;
 	private boolean collidesWithPlayer;
+	private boolean damagesPlayer;
 	
-	public GameObject(double ex, double why, double width, double height, boolean cWP, Sprite s)
+	public GameObject(double ex, double why, double width, double height, boolean cWP, boolean dP, Sprite s)
 	{
 		x = ex;
 		y = why;
 		w = width;
 		h = height;
 		collidesWithPlayer = cWP;
+		damagesPlayer = dP;
 	}
 	
-	public GameObject(double ex, double why, double width, double height, boolean cWP, Sprite s,double vX, double vY)
+	public GameObject(double ex, double why, double width, double height, boolean cWP, boolean dP, Sprite s,double vX, double vY)
 	{
-		this(ex,why,width,height,cWP,s);
+		this(ex,why,width,height,cWP,dP,s);
 		velX = vY;
 		velY = vY;
 	}

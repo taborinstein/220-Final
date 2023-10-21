@@ -11,7 +11,7 @@ public class JeromeComponent extends JComponent{
 		super.paintComponent(graphics);
 		Graphics2D g = (Graphics2D) graphics;
 		
-		GameObject temp = new GameObject(100,500,400,50,false,null);
+		GameObject temp = new GameObject(100,500,400,50,false,false,null);
 		temp.drawOn(g);
 	}
 }
