@@ -1,20 +1,75 @@
+import java.awt.Graphics2D;
+
 public class Barrier{
 	//private Line[] bounds;
-	private Line line;
-	private boolean damagesPlayer;
-	private double w;
+	protected Line line;
+	protected boolean damagesPlayer;
+	protected double w;
+	protected double rotVel;
+	protected Sprite sprite;
 	
-	public Barrier(Line l, double width)
+	public Barrier(Line l, double width, double rotVel, Sprite s)
 	{
 		line = l;
 		w = width;
+		this.rotVel = rotVel;
+		sprite = s;
 		//bounds = new Line[4];
 	}
 	
-	public Barrier(Line l, double width, boolean dP)
+	public Line getLine() {
+		return line;
+	}
+
+	public void setLine(Line line) {
+		this.line = line;
+	}
+
+	public boolean isDamagesPlayer() {
+		return damagesPlayer;
+	}
+
+	public void setDamagesPlayer(boolean damagesPlayer) {
+		this.damagesPlayer = damagesPlayer;
+	}
+
+	public double getW() {
+		return w;
+	}
+
+	public void setW(double w) {
+		this.w = w;
+	}
+
+	public double getRotVel() {
+		return rotVel;
+	}
+
+	public void setRotVel(double rotVel) {
+		this.rotVel = rotVel;
+	}
+
+	public Barrier(Line l, double width, double rotVel, boolean dP,Sprite s)
 	{
-		this(l,width);
+		this(l,width,rotVel,s);
 		damagesPlayer = dP;
+	}
+	
+	public void drawOn(Graphics2D g)
+	{
+		g.translate(line.getX1(),line.getY1());
+		g.rotate(line.getAngle());
+		//System.out.println(line.getAngle()*180/Math.PI);
+		//g.fillRect((int)(-w),(int)(-w),(int)(line.getLength()+2*w),(int)(2*w));
+		sprite.drawOn(g,(int)-w,(int)-w,(int)(line.getLength()+2*w),(int)(2*w));
+		g.rotate(-line.getAngle());
+		g.translate(-line.getX1(),-line.getY1());
+
+	}
+	
+	public void update()
+	{
+		line.rotate(rotVel);
 	}
 	
 	public Line[] getBounds()
