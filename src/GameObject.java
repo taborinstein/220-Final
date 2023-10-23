@@ -1,10 +1,10 @@
 import java.awt.Graphics2D;
 
 public class GameObject {
-	private Sprite sprite;
-	private double x,y,w,h,velX,velY;
-	private boolean collidesWithPlayer;
-	private boolean damagesPlayer;
+	protected Sprite sprite;
+	protected double x,y,w,h,velX,velY;
+	protected boolean collidesWithPlayer;
+	protected boolean damagesPlayer;
 	
 	public GameObject(double ex, double why, double width, double height, boolean cWP, boolean dP, Sprite s)
 	{
@@ -14,22 +14,29 @@ public class GameObject {
 		h = height;
 		collidesWithPlayer = cWP;
 		damagesPlayer = dP;
+		sprite = s;
+		//velX = 0;
+		//velY = 0;
 	}
 	public GameObject(double ex, double why, double width, double height, boolean cWP, boolean dP, Sprite s,double vX, double vY)
 	{
 		this(ex,why,width,height,cWP,dP,s);
-		velX = vY;
-		velY = vY;
+		//System.out.println(vX);
+		this.velX = vX;
+		this.velY = vY;
 	}
 
 	public void drawOn(Graphics2D g) {
 		// sprite.drawOn(g);
-		g.fillRect((int) x, (int) y, (int) w, (int) h);
+		//g.fillRect((int) x, (int) y, (int) w, (int) h);
+		sprite.drawOn(g,(int)x,(int)y,(int)w,(int)h);
 	}
 
 	public void update() {
+		//System.out.println(x+" "+velX+" "+y+" "+velY);
 		x += velX;
 		y += velY;
+		//System.out.println(x+" "+y+"\n");
 	}
 
 	public boolean overlapsWith(GameObject other) {

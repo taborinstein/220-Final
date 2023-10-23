@@ -64,6 +64,13 @@ public class Barrier{
 		sprite.drawOn(g,(int)-w,(int)-w,(int)(line.getLength()+2*w),(int)(2*w));
 		g.rotate(-line.getAngle());
 		g.translate(-line.getX1(),-line.getY1());
+		Line[] bounds = getBounds();
+		g.drawLine((int)bounds[0].getX1(),(int)bounds[0].getY1(),(int)bounds[0].getX2(),(int)bounds[0].getY2());
+		g.drawLine((int)bounds[1].getX1(),(int)bounds[1].getY1(),(int)bounds[1].getX2(),(int)bounds[1].getY2());
+		g.drawLine((int)bounds[2].getX1(),(int)bounds[2].getY1(),(int)bounds[2].getX2(),(int)bounds[2].getY2());
+		g.drawLine((int)bounds[3].getX1(),(int)bounds[3].getY1(),(int)bounds[3].getX2(),(int)bounds[3].getY2());
+
+		
 
 	}
 	
@@ -80,14 +87,14 @@ public class Barrier{
 		double px2 = line.getX2();
 		double py2 = line.getY2();
 		double theta = line.getAngle();
-		double px3 = px1 + w*Math.cos(theta+Math.PI/4);
-		double py3 = py1 + w*Math.sin(theta+Math.PI/4);
-		double px4 = px1 + w*Math.cos(theta-Math.PI/4);
-		double py4 = py1 + w*Math.sin(theta-Math.PI/4);
-		double px5 = px2 - w*Math.cos(theta+Math.PI/4);
-		double py5 = py2 - w*Math.sin(theta+Math.PI/4);
-		double px6 = px2 - w*Math.cos(theta-Math.PI/4);
-		double py6 = py2 - w*Math.sin(theta-Math.PI/4);
+		double px3 = px1 - w*Math.cos(theta+Math.PI/4);
+		double py3 = py1 - w*Math.sin(theta+Math.PI/4);
+		double px4 = px1 - w*Math.cos(theta-Math.PI/4);
+		double py4 = py1 - w*Math.sin(theta-Math.PI/4);
+		double px5 = px2 + w*Math.cos(theta+Math.PI/4);
+		double py5 = py2 + w*Math.sin(theta+Math.PI/4);
+		double px6 = px2 + w*Math.cos(theta-Math.PI/4);
+		double py6 = py2 + w*Math.sin(theta-Math.PI/4);
 		lines[0] = new Line(px3,py3,px4,py4);
 		lines[1] = new Line(px4,py4,px5,py5);
 		lines[2] = new Line(px5,py5,px6,py6);
