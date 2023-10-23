@@ -59,13 +59,14 @@ public class JeromeComponent extends JComponent {
 		//repaint();
 		Line line1 = new Line(100,0,100,100);
 		Line line2 = new Line(0,50,50,50);
-		System.out.println((1<0)==(1>3));
+		//System.out.println((1<0)==(1>3));
 		//System.out.println(line1.isIntersecting(line2));
 		tempLevel.update();
 		double currX = player.getX();
 		double currY = player.getY();
 		player.update(pressedChars);
 		//System.out.println(tempLevel.playerCollidesWithBarriers(player));
+		System.out.println(pressedChars);
 		if(tempLevel.playerCollidesWithBarriers(player))
 		{
 			player.setX(currX);
@@ -85,7 +86,10 @@ public class JeromeComponent extends JComponent {
 	
 	public void keyDown(KeyEvent e)
 	{
-		pressedChars+=e.getKeyChar();
+		if(!pressedChars.contains(""+e.getKeyChar()))
+		{
+			pressedChars+=e.getKeyChar();
+		}
 //		System.out.println("iekhe");
 //		if(player.getVelX()==0)
 //		{
