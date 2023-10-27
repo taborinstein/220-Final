@@ -1,0 +1,92 @@
+@startuml
+class JeromeMain {
+    -FRAME_H: int
+    -FRAME_W: int
+}
+class JeromeComponent {
+     -pressedChars: String
+     +paintComponent(graphics: Graphics): void
+     +update(): void
+     +keyDown(e: KeyEvent): void
+     +keyReleased(KeyEvent: e): void
+     +drawOn(g: Graphics2D): void
+}
+class Level {
+    -scanner: Scannel
+    +playerCollidesWithBarriers(player: GameObject): boolean
+    +update(): void
+    +drawOn(g: Graphics2D): void
+}
+class Jerome extends GameObject {
+    -JEROME_WIDTH: double
+    -JEROME_HEIGHT: double
+    -X_SPEED: double
+    -Y_SPEED: double
+    -GRAVITY: double
+    +update(input: String): void
+}
+class GameObject {
+    #x: double
+    #y: double
+    #w: double
+    #h: double
+    #velX: double
+    #velY: double
+    #collidesWithPlayer: boolean
+    #damagesPlayer: boolean
+    +update(): void
+    +overlapsWith(other: GameObject): boolean
+    +drawOn(g: Graphics2D): void   
+}
+class Sprite {
+    -frameSheet: HashMap<String, BufferedImage[]>
+    -currentAnimation: String
+    -animationFrame: int
+    -loadSpriteSheet(path: String): void
+    +drawOn(g: Graphics2D, x: int, y: int, w: int, h: int)
+    +setAnimation(name: String): void
+}
+class Coin extends GameObject {
+    -COIN_WIDTH: double
+    -COIN_HEIGHT: double
+    -coinType: int
+}
+class Missile extends GameObject {
+    -DEFAULT_WIDTH: double
+    -DEFAULT_HEIGHT: double
+    -isTracking: boolean
+    +pointTowards(object: GameObject): void
+}
+class Line {
+    -x1: double
+    -x2: double
+    -y1: double
+    -y2: double
+    -px: double
+    -py: double
+}
+class HUD {}
+class Barrier {
+    #damagesPlayer: boolean
+    #w: double
+    #rotationVel: double
+    +drawOn(g: Graphics2D): void
+    +update(): void
+    +getBounds(): Line[]
+    +isIntersecting(other: GameObject): boolean
+}
+JeromeMain ..> JeromeComponent
+JeromeComponent -> Jerome
+JeromeComponent -> HUD
+JeromeComponent -> Barrier
+JeromeComponent ->"*" GameObject
+JeromeComponent ->"*" Level
+GameObject -> Sprite
+Barrier -> Sprite
+Barrier -> Line
+Barrier ..> GameObject
+Level ->"*" barriers
+Level ->"*" GameObject
+Level ..> GameObject
+
+@enduml

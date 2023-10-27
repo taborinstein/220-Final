@@ -12,68 +12,66 @@ import javax.swing.JComponent;
 
 public class JeromeComponent extends JComponent {
 
-	//private ArrayList<GameObject> gameObjects;
-	//private ArrayList<Barrier> barriers;
+	// private ArrayList<GameObject> gameObjects;
+	// private ArrayList<Barrier> barriers;
 	private Level tempLevel;
 	private Scanner scanner;
 	private Jerome player;
 	private String pressedChars;
-	
-	public JeromeComponent()
-	{
+
+	public JeromeComponent() {
 		pressedChars = "";
 		try {
-			scanner = new Scanner(new File("src/textures.txt"));
+			scanner = new Scanner(new File("assets/textures.txt"));
 			HashMap<String, Sprite> sprites = new HashMap<>();
 			//
-			while(scanner.hasNext())
-				sprites.put(scanner.next(),new Sprite("src/"+scanner.next()));
-			//}
-			player = new Jerome(0,0,sprites.get("Jerome"));
-			tempLevel = new Level("src/level1.txt",sprites);
+			while (scanner.hasNext())
+				sprites.put(scanner.next(), new Sprite("assets/" + scanner.next()));
+			// }
+			player = new Jerome(0, 0, sprites.get("Jerome"));
+			tempLevel = new Level("assets/level1.txt", sprites);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		//gameObjects = new ArrayList<>();
-		//barriers = new ArrayList<>();
+
+		// gameObjects = new ArrayList<>();
+		// barriers = new ArrayList<>();
 //		gameObjects.add(new Jerome(0,0,null));
 //		gameObjects.add(new Coin(100,100,null));
 //		gameObjects.add(new Missile(500,500,-10,0,null));
 //		barriers.add(new Barrier(new Line(100,100,300,200,200,150),10,0.1));
-		//barriers.add(new Barrier(new Line(100,700,700,700),30));
+		// barriers.add(new Barrier(new Line(100,700,700,700),30));
 	}
-	
-	//public void 
-	
+
+	// public void
+
 	@Override
 	protected void paintComponent(Graphics graphics) {
 		super.paintComponent(graphics);
 		Graphics2D g = (Graphics2D) graphics;
 		drawOn(g);
-		//GameObject temp = new GameObject(100,500,400,50,false,false,null);
-		//temp.drawOn(g);
+		// GameObject temp = new GameObject(100,500,400,50,false,false,null);
+		// temp.drawOn(g);
 	}
+
 	public void update() {
-		//repaint();
-		Line line1 = new Line(100,0,100,100);
-		Line line2 = new Line(0,50,50,50);
-		//System.out.println((1<0)==(1>3));
-		//System.out.println(line1.isIntersecting(line2));
+		// repaint();
+		Line line1 = new Line(100, 0, 100, 100);
+		Line line2 = new Line(0, 50, 50, 50);
+		// System.out.println((1<0)==(1>3));
+		// System.out.println(line1.isIntersecting(line2));
 		tempLevel.update();
 		double currX = player.getX();
 		double currY = player.getY();
 		player.update(pressedChars);
-		//System.out.println(tempLevel.playerCollidesWithBarriers(player));
-		System.out.println(pressedChars);
-		if(tempLevel.playerCollidesWithBarriers(player))
-		{
+		// System.out.println(tempLevel.playerCollidesWithBarriers(player));
+//		System.out.println(pressedChars);
+		if (tempLevel.playerCollidesWithBarriers(player)) {
 			player.setX(currX);
 			player.setY(currY);
 		}
-			
-		
+
 //		for(GameObject q : gameObjects)
 //		{
 //			q.update();
@@ -83,12 +81,10 @@ public class JeromeComponent extends JComponent {
 //			b.update();
 //		}
 	}
-	
-	public void keyDown(KeyEvent e)
-	{
-		if(!pressedChars.contains(""+e.getKeyChar()))
-		{
-			pressedChars+=e.getKeyChar();
+
+	public void keyDown(KeyEvent e) {
+		if (!pressedChars.contains("" + e.getKeyChar())) {
+			pressedChars += e.getKeyChar();
 		}
 //		System.out.println("iekhe");
 //		if(player.getVelX()==0)
@@ -103,17 +99,14 @@ public class JeromeComponent extends JComponent {
 //		else {
 //			//player.setVelX(0);
 //		}
-		//System.out.println(player.getX());
+		// System.out.println(player.getX());
 	}
-	
-	public void keyReleased(KeyEvent e)
-	{
+
+	public void keyReleased(KeyEvent e) {
 		String tempString = "";
-		for(int q = 0; q<pressedChars.length(); q++)
-		{
-			if(pressedChars.charAt(q)!=e.getKeyChar())
-			{
-				tempString+=pressedChars.charAt(q);
+		for (int q = 0; q < pressedChars.length(); q++) {
+			if (pressedChars.charAt(q) != e.getKeyChar()) {
+				tempString += pressedChars.charAt(q);
 			}
 		}
 		pressedChars = tempString;
@@ -127,11 +120,10 @@ public class JeromeComponent extends JComponent {
 //		}
 //		else if(e.getKeyCode()==KeyEvent.VK_A)
 //			player.velX+=2;
-		//player.velX = 0;
+		// player.velX = 0;
 	}
-	
-	public void drawOn(Graphics2D g)
-	{
+
+	public void drawOn(Graphics2D g) {
 		tempLevel.drawOn(g);
 		player.drawOn(g);
 //		for(GameObject q : gameObjects)

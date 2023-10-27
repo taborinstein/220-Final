@@ -1,0 +1,3 @@
+dimensions: 42 58
+frames.idle: 0
+frames.flying: 1 2 3 4
